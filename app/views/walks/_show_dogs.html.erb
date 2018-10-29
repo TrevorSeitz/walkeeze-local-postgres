@@ -1,0 +1,6 @@
+<% if walk.dogs.count > 0 %>
+  <p>The following dogs are booked for this walk!</p>
+  <% walk.dogs.each do |d| %>
+    <p><%= d.name %></p>
+  <% end %>
+<% end %>

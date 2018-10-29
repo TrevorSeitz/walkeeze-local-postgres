@@ -24,8 +24,10 @@ default: &default
 development:
   <<: *default
   database: walkeeze-local-postgres_development
-  username: walkeeze-local-postgres
-  password: <%= ENV['WALKEEZE-LOCAL-POSTGRES_DATABASE_PASSWORD'] %>
+  # username: trevorseitz
+  # password: <%= ENV['WALKEEZE-LOCAL-POSTGRES_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: darbydog1
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -55,6 +57,8 @@ development:
 test:
   <<: *default
   database: walkeeze-local-postgres_test
+  username: postgres
+  password: darbydog1
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -78,5 +82,7 @@ test:
 production:
   <<: *default
   database: walkeeze-local-postgres_production
-  username: walkeeze-local-postgres
-  password: <%= ENV['WALKEEZE-LOCAL-POSTGRES_DATABASE_PASSWORD'] %>
+  # username: trevorseitz
+  # password: <%= ENV['WALKEEZE-LOCAL-POSTGRES_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: darbydog1

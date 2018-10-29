@@ -1,0 +1,13 @@
+<!-- <div class="page-header"><h1>Photos</h1></div> -->
+
+<div class="media">
+  <% if @user.image_file_name != nil %>
+
+    <div class="media-left">
+      <!-- Renders image -->
+      <%= link_to image_tag(@user.image.url(:medium), class: 'media-object'), @user.image.url, target: '_blank' %>
+      <!-- Button to delete image -->
+      <%= link_to 'Remove', photo_path(@user.image), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+    </div>
+    <% end %>
+</div>

@@ -1,0 +1,24 @@
+<% if walk.dogs.count > 0 %>
+  <p>The following dogs are booked for this walk!</p>
+  <% walk.dogs.each do |d| %>
+    <div class="dog<%=d.id%>"}>
+      <% dog_id = d.id %>
+      <div class="input-group" align="left" >
+        <div class="form-inline">
+          <p><%= d.name %>
+          <% if d.user.id == current_user[:id] %>
+            <%= form_for walk, :html => {class: "dog_note"} do |f| %>
+              <%= hidden_field_tag(:dog_id, dog_id) %>
+              <%= text_field_tag("note", :note, :size => 15) %>
+              <%= button_to 'Add Note', {:action => "update"}, {:method => :patch } %>
+            <% end %>
+          <% end %>
+        </div>
+      </div></p>
+    </div>
+  <% end %>
+  <div class="dog_notes">
+    Notes
+
+  </div>
+<% end %>

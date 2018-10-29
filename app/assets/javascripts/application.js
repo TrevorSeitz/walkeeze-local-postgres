@@ -12,5 +12,10 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+//= require walks
+//= require dogsList
+//= require newDog
+//= require dogNote
+//= require showDogs
+//= require loadWalks

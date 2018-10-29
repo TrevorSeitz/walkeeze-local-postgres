@@ -1,0 +1,1 @@
+/Applications/Postgres.app/Contents/Versions/10/bin/postgres "-D" "/Users/trevorseitz/repos/GitHub/Flatiron/walkeeze-local-postgres/db/server" "-p" "5444"

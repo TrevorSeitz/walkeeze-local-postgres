@@ -1,0 +1,7 @@
+
+<div class="media-left">
+  <!-- Renders image -->
+  <%= link_to image_tag(user.image.url(:medium), class: 'media-object'), user.image.url, target: '_blank' %>
+  <!-- Button to delete image -->
+  <%= link_to 'Remove', user_path(image), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>

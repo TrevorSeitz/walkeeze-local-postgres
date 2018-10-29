@@ -1,0 +1,23 @@
+<h1>Hello, <%= @user.name %>!</h1>
+<div class="row">
+  <div class="column3">
+    <%= render partial: 'form', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+
+    <%= render partial: 'show_photo', locals: { user: @user} %>
+  </div>
+  <div class="column3">
+
+          <%= render partial: 'scheduled_walks', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+  </div>
+  <div class="column3">
+        <%= render partial: 'users_dogs', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+      <div class="column3-1">
+        <div class="dog">
+        </div>
+      </div>
+      <div class="column3-2">
+        <%= render partial: 'show_photo', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+      </div>
+    </div>
+  </div>
+</div>

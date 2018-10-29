@@ -1,0 +1,16 @@
+
+<div class="returned_new_dog">
+
+</div>
+
+<%= form_for :dog, url: '/dogs/create', :html => {class: "new_dog"} do |f| %>
+
+  <div class="new_dog_form">
+    Name: <%= f.text_field :name %><br>
+    Breed: <%= f.text_field :breed %><br>
+    Age: <%= f.number_field :age %><br>
+    Notes: <br><%= f.text_area :notes , cols: "30", rows: "10" %><br><br>
+
+    <%= f.submit %>
+  </div>
+<% end %>

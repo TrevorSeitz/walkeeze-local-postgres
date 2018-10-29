@@ -1,0 +1,18 @@
+<h2>Choose from the following walks</h2>
+
+<% @walks.each do |walk| %>
+  <%= render partial: 'form', locals: { user: @user, dog: @dog, dogs: @dogs, walk: walk } %>
+
+  <%= link_to "Show Dogs on this Walk!", walk_path(walk.id), class: "walk_list" %>
+
+  <div class="dog_list<%=walk.id%>"></div>
+
+  <ul>
+    <p id="dogs_list<%=walk.id%>">      </p>
+  </ul>
+
+  <p><%= button_to "Book This!", edit_walk_path(walk.id), {method: :get} %></p><br>
+<% end %>
+
+
+<p><%= button_to "Go to your Page", user_path(current_user.id), {method: :get} %></p>

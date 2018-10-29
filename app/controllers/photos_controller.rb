@@ -1,0 +1,56 @@
+class PhotosController < ApplicationController
+
+
+   #Index action, photos gets listed in the order at which they were created
+   def index
+    @photos = Photo.order('created_at')
+   end
+
+   #New action for creating a new photo
+   def new
+    @photo = Photo.new
+   end
+
+   def update
+    @user = User.find(params[:id])
+    @user.update_attribute(:image, params[:user][:image])
+   end
+
+   #Create action ensures that submitted photo gets created if it meets the requirements
+   def create
+    # @photo = Photo.new(photo_params)
+     @photo = Photo.new(photo_params)
+    if @photo.save
+     flash[:notice] = "Successfully added new photo!"
+     redirect_to root_path
+    else
+     flash[:alert] = "Error adding new photo!"
+     render :new
+    end
+   end
+
+   def show
+     @photos = Photo.order('created_at')
+     render :index
+   end
+
+   #Destroy action for deleting an already uploaded image
+  def destroy
+  @photo = Photo.find(params[:id])
+    if @photo.destroy
+      flash[:notice] = "Successfully deleted photo!"
+      redirect_to root_path
+    else
+      flash[:alert] = "Error deleting photo!"
+    end
+  end
+
+   private
+
+   #Permitted parameters when creating a photo. This is used for security reasons.
+   def photo_params
+    params.require(:photo).permit(:title, :image)
+   end
+
+
+end

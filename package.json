@@ -1,5 +1,7 @@
 {
   "name": "walkeeze-local-postgres",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^6.1.0"
+  }
 }

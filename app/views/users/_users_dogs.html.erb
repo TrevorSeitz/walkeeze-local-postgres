@@ -1,0 +1,10 @@
+  Your currently registered dogs:<br />
+
+<% if @dogs %>
+  <% @dogs.each do |d| %>
+    <%= link_to d.name, user_dog_path(@user.id, d.id), :class => 'show_dog'%><br />
+  <% end %>
+<% end %><br />
+
+
+<%= button_to "Add a new dog", new_dog_path, {method: :get} %><br />

@@ -1,0 +1,12 @@
+2018-10-26 14:34:01.643 EDT [74404] LOG:  listening on IPv6 address "::1", port 5444
+2018-10-26 14:34:01.643 EDT [74404] LOG:  listening on IPv4 address "127.0.0.1", port 5444
+2018-10-26 14:34:01.644 EDT [74404] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5444"
+2018-10-26 14:34:01.660 EDT [74405] LOG:  database system was shut down at 2018-10-26 14:34:01 EDT
+2018-10-26 14:34:01.664 EDT [74404] LOG:  database system is ready to accept connections
+2018-10-26 16:07:18.992 EDT [78471] ERROR:  syntax error at or near "psql" at character 1
+2018-10-26 16:07:18.992 EDT [78471] STATEMENT:  psql
+	create role walkeeze with createdb login password 'password1';
+2018-10-26 18:28:35.957 EDT [84523] FATAL:  database "walkeeze-local-postgres_development" does not exist
+2018-10-26 18:29:26.580 EDT [84577] FATAL:  database "template0" is not currently accepting connections
+2018-10-26 18:29:31.419 EDT [84588] FATAL:  database "template0" is not currently accepting connections
+2018-10-26 18:29:41.854 EDT [84600] FATAL:  database "template0" is not currently accepting connections

@@ -1,0 +1,13 @@
+
+<p>Who's joining the walk?</p>
+<%= form_for "walks", :url => {:action => "create", :id => walk.id}  do |f| %>
+  <% if dogs %>
+    <% dogs.each do |d| %>
+      <div>
+        <%= check_box_tag "dog_ids[]", d.id, walk.dogs.include?(d) %>
+        <%= "#{d.name}  "%><br>
+      </div>
+    <% end %>
+  <% end %>
+    <%= f.submit "Submit"%>
+<% end %>
