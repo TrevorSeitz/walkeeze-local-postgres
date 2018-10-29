@@ -9,6 +9,7 @@ class DogsController < ApplicationController
   end
 
   def create
+    byebug
     @dog = current_user.dogs.build(dog_params)
     @dog.save
     if @dog.valid?
