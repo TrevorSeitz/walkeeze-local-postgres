@@ -1,8 +1,15 @@
 <div class="dog">
+<%#byebug%>
 
-</div>
 
-  <h2><%= @dogs[@index].name %></h2>
-  <p>Breed: <%= @dogs[@index].breed %></p>
-  <p>Age: <%= @dogs[@index].age %></p>
-  <p>Notes: <br><%= @dogs[@index].notes %><br><br>
+  <h2><%= @dog.name %></h2>
+  <p>Breed: <%= @dog.breed %></p>
+  <p>Age: <%= @dog.age %></p>
+  <p>Notes: <br><%= @dog.notes %><br><br>
+
+  <p><%= button_to "edit", edit_dog_path(@dog.id), {method: :get} %></p><br>
+
+  <p><%= button_to "delete", delete_dog_path(@dog.id), {method: :delete} %></p><br>
+
+
+    </div>

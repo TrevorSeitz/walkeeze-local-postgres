@@ -1,11 +1,18 @@
 <% if session[:user_id] %>
 
+    <%= "Currently, Walkeeze's most active dog is:" %>
+
+
+
+  <%= "Welcome to Walk-eze #{@user.name}! " %><br><br>
 
 
   <p><%= button_to "Go to your Page", user_path(@user), {method: :get} %></p>
   <p><%= button_to "Book a Walk", walks_path, {method: :get} %></p><br>
 <% else %>
 <%= "Walk-eze - the easiest way to get your dog walked!" %><br><br>
+
+
 
 
   <p>

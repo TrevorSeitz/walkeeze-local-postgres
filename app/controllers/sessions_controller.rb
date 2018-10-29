@@ -25,16 +25,19 @@ class SessionsController < ApplicationController
       else
         flash.now.alert = "There were errors on your form"
         flash.now.alert = "please confirm your passwords match and all field are complete"
+        byebug
         render 'users/new'
       end
     end
     if @user
       if @user.save
         session[:user_id] = @user.id
+        byebug
         render 'welcome/home'
       else
         # if email or password incorrect, re-render login page:
         flash.now.alert = "Incomplete form, try again."
+        byebug
         render 'users/new'
       end
     end

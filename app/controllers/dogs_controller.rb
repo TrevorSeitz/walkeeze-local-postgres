@@ -12,7 +12,11 @@ class DogsController < ApplicationController
     @dog = current_user.dogs.build(dog_params)
     @dog.save
     if @dog.valid?
-      render json: @dog, status: 201
+      # render json: @dog, status: 201
+      respond_to do |format|
+        format.html
+        format.json {render json: @dog}
+      end
     else
       redirect_to new_dog_path
     end
@@ -25,11 +29,19 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @walks = @dog.walks
-    render :json => {:dog => @dog, :walks=> @walks}
-    # respond_to do |format|
-    #   format.html
-    #   format.json {render json: @dog, include: [:walks]} - use to add walks to dog show on user page
-    # end
+    # render :json => {:dog => @dog, :walks=> @walks}
+    respond_to do |format|
+      format.html
+      format.json {render json: @dog, include: [:walks]} #- use to add walks to dog show on user page
+    end
+  end
+
+  def destroy
+    @dog = Dog.find(params[:id])
+    @dog.delete
+      # byebug
+    # redirect_to :controller => 'users', :action => 'show', , id: 2
+    redirect_to user_path(@user)
   end
 
   def schedule
