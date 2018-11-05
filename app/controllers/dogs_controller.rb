@@ -22,8 +22,15 @@ class DogsController < ApplicationController
     end
   end
 
+  def edit
+    @dog = Dog.find(params[:id])
+  end
+
   def update
     @dog = Dog.find(params[:id])
+    @dog.update(dog_params)
+
+    redirect_to user_path(@user)
   end
 
   def show
@@ -39,7 +46,6 @@ class DogsController < ApplicationController
   def destroy
     @dog = Dog.find(params[:id])
     @dog.delete
-      # byebug
     # redirect_to :controller => 'users', :action => 'show', , id: 2
     redirect_to user_path(@user)
   end

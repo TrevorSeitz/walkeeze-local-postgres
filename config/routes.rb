@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :dogs, :users, :welcome, :sessions, :walks
+  resources :dogs, :users, :welcome, :sessions, :walks, :walkers
 
   resources :users do
     resources :dogs, :walks
@@ -23,6 +23,7 @@ resources :photos
   get 'dogs/:id/schedule' => 'dogs#schedule', :as => :schedule
   post 'dogs/create'=> 'dogs#create', :as => :create_dog
   delete 'dogs/:id' => 'dogs#destroy', :as => :delete_dog
+  post 'dogs/:id' => 'dogs#update', :as => :update_dog
   get '/walks/:id/participants' => 'walks#participants', :as => :participants
 
   match '/login' => 'sessions#new', via: [:get, :post]

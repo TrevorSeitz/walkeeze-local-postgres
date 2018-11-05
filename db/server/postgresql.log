@@ -10,3 +10,7 @@
 2018-10-26 18:29:26.580 EDT [84577] FATAL:  database "template0" is not currently accepting connections
 2018-10-26 18:29:31.419 EDT [84588] FATAL:  database "template0" is not currently accepting connections
 2018-10-26 18:29:41.854 EDT [84600] FATAL:  database "template0" is not currently accepting connections
+2018-11-02 16:06:23.372 EDT [74404] LOG:  received smart shutdown request
+2018-11-02 16:06:23.373 EDT [74404] LOG:  worker process: logical replication launcher (PID 74411) exited with exit code 1
+2018-11-02 16:06:23.374 EDT [74406] LOG:  shutting down
+2018-11-02 16:06:23.390 EDT [74404] LOG:  database system is shut down
