@@ -1,0 +1,8 @@
+<div>
+  <div id="tagline">
+    <%= "Walk those dogs until your dogs are barking!!" %><br><br>
+  </div>
+<% @user.walker = true %>
+<% byebug %>
+  <%= render partial: '/users/user_form', locals: { user: @user } %>
+</div>

@@ -1,4 +1,5 @@
 <%= form_tag "/auth/user/register" do %>
+<% byebug %>
   <% if @user && @user.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this account from being saved:</h2>
@@ -9,21 +10,29 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= label_tag :name %><br>
-    <%= text_field_tag :name, @user.try(:name) %>
+
+  <% if @user.walker === true %>
+    <%= hidden_field_tag(:walker, true) %>
+  <% end %>
+
+  <div class="column6" id="log-in">
+    <br>
+    <div class="field">
+      <%= label_tag :name %><br>
+      <%= text_field_tag :name, @user.try(:name) %>
+    </div>
+    <div class="field">
+      <%= label_tag :email %><br>
+      <%= text_field_tag :email, @user.try(:email) %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password %>
+    </div>
+    <div class="field">
+      <%= label_tag :password_confirmation %><br>
+      <%= password_field_tag :password_confirmation %>
+    </div>
+    <div class="actions"><%= submit_tag "Register" %></div>
   </div>
-  <div class="field">
-    <%= label_tag :email %><br>
-    <%= text_field_tag :email, @user.try(:email) %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= label_tag :password_confirmation %><br>
-    <%= password_field_tag :password_confirmation %>
-  </div>
-  <div class="actions"><%= submit_tag "Register" %></div>
 <% end %>

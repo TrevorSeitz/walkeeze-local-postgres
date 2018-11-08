@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    byebug
     @user = User.find_by(email: params['email'])
     if @user && @user.authenticate(params['password'])
       session[:user_id] = @user.id
@@ -21,15 +22,16 @@ class SessionsController < ApplicationController
       end
     else
       if(params[:password_confirmation] && (params[:password] == params[:password_confirmation]))
-        @user = User.new(name: params[:name], email: params[:email], password: params[:password])
+        @user = User.new(name: params[:name], email: params[:email], password: params[:password], walker: params[:walker])
       else
         flash.now.alert = "There were errors on your form"
         flash.now.alert = "please confirm your passwords match and all field are complete"
-        byebug
+        # byebug
         render 'users/new'
       end
     end
     if @user
+      byebug
       if @user.save
         session[:user_id] = @user.id
         byebug
@@ -38,7 +40,11 @@ class SessionsController < ApplicationController
         # if email or password incorrect, re-render login page:
         flash.now.alert = "Incomplete form, try again."
         byebug
-        render 'users/new'
+        if @user.walker
+          render 'walkers/new'
+        else
+          render 'users/new'
+        end
       end
     end
   end
