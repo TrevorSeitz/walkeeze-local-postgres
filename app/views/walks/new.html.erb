@@ -1,1 +1,15 @@
 this is the new walks form - it will be where Walkers add walks
+<h3> <%= walk.walker_name %>'s Walk </h3>
+<p><%= walk.date %> @ <%= walk.time %></p>
+<p><%= walk.length %> Mins, <%= (walk.available_spots) - (walk.dogs.count) %> spots available </p>
+<p><%= "Notes: " %> <%= walk.notes %></p>
+
+
+<%= "Currently Scheduled Walks:" %><br />
+<% walks = @user.walks.uniq {|w| w.id } %>
+<% walks.each do |w| %>
+  <%= link_to "#{w.date} @ #{w.time} with #{w.walker_name}", user_walk_path(@user.id, w.id) %><br>
+  <%= safe_join(w.dogs.map { |d| d.name}, ', ') %><br /><br /><br />
+<%end%><br />
+
+<%= button_to "Schedule a Walk", walks_path, {method: :get} %><br />

@@ -1,0 +1,11 @@
+
+<div class="returned_new_dog">
+
+</div>
+  <div class="new_dog_form">
+    <%= form_for :dog, url: '/dogs/create', :html => {class: "new_dog"} do |f| %>
+
+    <%= render partial: 'dog', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+
+  </div>
+<% end %>
