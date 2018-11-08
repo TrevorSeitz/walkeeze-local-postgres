@@ -10,7 +10,6 @@
 
 
   <p><%= button_to "Go to your Page", user_path(@user), {method: :get} %></p>
-  <% byebug %>
   <% if @user.walker === true%>
     <p><%= button_to "Add a new Walk to your list", new_walk_path, {method: :get} %></p><br>
   <% else %>

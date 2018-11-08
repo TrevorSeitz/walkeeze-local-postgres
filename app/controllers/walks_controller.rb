@@ -1,11 +1,15 @@
 class WalksController < ApplicationController
+  def new
+    @walk = Walk.new
+  end
+
 
   def index
     @walks = Walk.all
   end
 
   def create
-    @walk = Walk.find(params[:id].to_i)
+    @walk = Walk.find_or_create_by(params[:id].to_i)
     if params[:dog_ids]
       params[:dog_ids].map(&:to_i).each do |d|
         if !@walk.dogs.ids.include?(d)
