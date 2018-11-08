@@ -11,20 +11,45 @@
 
   <p><%= button_to "Go to your Page", user_path(@user), {method: :get} %></p>
   <p><%= button_to "Book a Walk", walks_path, {method: :get} %></p><br>
+
 <% else %>
-<%= "Walk-eze - the easiest way to get your dog walked!" %><br><br>
+
+<div id="tagline">
+  <%= "Walk-eze - the easiest way to get your dog walked!" %><br><br>
+</div>
 
 
 <div class="row">
 
-<div class="column">
+  <div class="column6" id="log-in">
 
-  <p>
-    <strong>Don't use GitHub?</strong><br>
-    <%= link_to "Create an account", new_user_path %> or login below.
-  </p>
+    <p>
+      <strong>Don't use GitHub?</strong><br>
+      login below.
+    </p>
 
-  <%= form_tag "/login" do %>
+    <%= form_tag "/login" do %>
+      <div class="field">
+        <%= label_tag :email, "Email" %><br>
+        <%= text_field_tag :email %>
+      </div>
+      <div class="field">
+        <%= label_tag :password %><br>
+        <%= password_field_tag :password %>
+      </div>
+      <div class="actions"><%= submit_tag "Login" %></div>
+       or<br /> <%= link_to "Create an account", new_user_path %>
+    <% end %>
+
+  <% end %>
+
+  </div>
+  <div class="column6" id="log-in">
+    <p>
+      <strong>Are you a Walker?</strong><br>
+      login below.
+    </p>
+  <%= form_tag "/walker_login" do %>
     <div class="field">
       <%= label_tag :email, "Email" %><br>
       <%= text_field_tag :email %>
@@ -34,29 +59,7 @@
       <%= password_field_tag :password %>
     </div>
     <div class="actions"><%= submit_tag "Login" %></div>
-  <% end %>
-
-<% end %>
-
+      <% end %>
+      or<br /> <%= link_to "Create a walker account", new_walker_path %>
+    </div>
 </div>
-<div class="column">
-  <p>
-    <strong>Are you a Walker?</strong><br>
-    login below.
-  </p>
-<%= form_tag "/walker_login" do %>
-  <div class="field">
-    <%= label_tag :email, "Email" %><br>
-    <%= text_field_tag :email %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Login" %></div>
-<% end %>
-<%= link_to "or Create a walker account", new_walker_path %>
-</div>
-
-</div>
-<img class="responsive-img" src="cool_pic.jpg">
