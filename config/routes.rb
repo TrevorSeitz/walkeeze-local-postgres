@@ -21,8 +21,9 @@ resources :photos
   get '/login' => 'sessions#new', :as => :login
   get '/auth/github/callback' => 'sessions#create'
   get 'dogs/:id/schedule' => 'dogs#schedule', :as => :schedule
-  post 'dogs/create'=> 'dogs#create', :as => :create_dog
   delete 'dogs/:id' => 'dogs#destroy', :as => :delete_dog
+  post 'dogs/create'=> 'dogs#create', :as => :create_dog
+  post 'walks/create'=> 'walks#create', :as => :create_walk
   post 'dogs/:id' => 'dogs#update', :as => :update_dog
   get '/walks/:id/participants' => 'walks#participants', :as => :participants
 

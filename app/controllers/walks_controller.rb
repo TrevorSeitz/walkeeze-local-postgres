@@ -1,36 +1,47 @@
 class WalksController < ApplicationController
+  def new
+    @walk = Walk.new
+  end
+
 
   def index
     @walks = Walk.all
   end
 
   def create
-    @walk = Walk.find(params[:id].to_i)
-    if params[:dog_ids]
-      params[:dog_ids].map(&:to_i).each do |d|
-        if !@walk.dogs.ids.include?(d)
-          @dog = Dog.find(d)
-          @walk.dogs << @dog
+    byebug
+    if params[:id].to_i > 0
+      @walk = Walk.find_or_create_by(params[:id].to_i)
+      if params[:dog_ids]
+        params[:dog_ids].map(&:to_i).each do |d|
+          if !@walk.dogs.ids.include?(d)
+            @dog = Dog.find(d)
+            @walk.dogs << @dog
+          end
+        end
+      else
+        params[:dog_ids]=[]
+      end
+
+      @walk.dogs.each do |wd|
+        if !params[:dog_ids].map(&:to_i).include?(wd.id)
+          if wd.user_id == current_user.id
+            @walk.dogs.delete(wd)
+          end
         end
       end
-    else
-      params[:dog_ids]=[]
-    end
 
-    @walk.dogs.each do |wd|
-      if !params[:dog_ids].map(&:to_i).include?(wd.id)
-        if wd.user_id == current_user.id
-          @walk.dogs.delete(wd)
-        end
+      if @walk.dogs.count > @walk.available_spots
+        redirect_to edit_walk_url(@walk)
+        flash[:notice] = 'There is not enough space for all these dogs! Please choose fewer dogs.'
+      else
+        @walk.save
+        render 'confirm_walk'
       end
-    end
-
-    if @walk.dogs.count > @walk.available_spots
-      redirect_to edit_walk_url(@walk)
-      flash[:notice] = 'There is not enough space for all these dogs! Please choose fewer dogs.'
     else
+      @walk = Walk.new
       @walk.save
-      render 'confirm_walk'
+      redirect_to walker_url(current_user)
     end
   end
 
@@ -69,7 +80,8 @@ class WalksController < ApplicationController
   private
 
   def walk_params
-    params.require(:walk).permit(:name, :length, :available, :available_spots, :date, :time, :notes)
+    # params.require(:walk).permit(:id, :name, :length, :available, :available_spots, :date, :time, :notes)
+    params.permit(:id, :name, :length, :available, :available_spots, :date, :time, :notes)
   end
 
 end

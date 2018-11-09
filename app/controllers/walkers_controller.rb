@@ -1,28 +1,29 @@
 class WalkersController < ApplicationController
   def new
-    @walker = Walker.new
+    @user = User.new    
+    # redirect_to '/users/new_walker'
   end
 
   def index
-    @walkers = Walker.all
+    @users = User.where(walker: true)
   end
 
   def show
     @dogs = Dog.where(user_id: @user.id)
+    redirect_to user_path
   end
 
   def update
-    @walker = Walker.find(params[:id])
-    @walker.update(name: params[:name], email: params[:email])
-    byebug
+    @user = User.find(params[:id])
+    @user.update(name: params[:name], email: params[:email])
 
-    redirect_to walker_path(@walker), notice: "Update Successful"
+    redirect_to walker_path(@user), notice: "Update Successful"
   end
 
 
   def edit
     # byebug
-    @walker = Walker.find(params[:id].to_i)
+    @user = User.find(params[:id].to_i)
   end
 
 end
