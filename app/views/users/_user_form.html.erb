@@ -1,5 +1,4 @@
 <%= form_tag "/auth/user/register" do %>
-<% byebug %>
   <% if @user && @user.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this account from being saved:</h2>
