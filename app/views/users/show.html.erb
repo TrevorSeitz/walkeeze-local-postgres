@@ -10,7 +10,9 @@
   <div class="column3">
 
     <%= render partial: 'scheduled_walks', locals: { user: @user, dog: @dog, dogs: @dogs } %><br />
-    <p><%= button_to "Add a new Walk to your list", new_walk_path, {method: :get} %></p><br />
+    <% if @user.walker === true %>
+      <p><%= button_to "Add a new Walk to your list", new_walk_path, {method: :get} %></p><br />
+    <% end %>
   </div>
   <div class="column3">
     <%= render partial: 'users_dogs', locals: { user: @user, dog: @dog, dogs: @dogs } %>

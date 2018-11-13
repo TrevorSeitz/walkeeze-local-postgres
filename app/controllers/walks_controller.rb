@@ -11,7 +11,8 @@ wrap_parameters Walk
 
   def create
     if params[:id].to_i > 0
-      @walk = Walk.find_or_create_by(params[:id].to_i)
+      byebug
+      @walk = Walk.find_or_create_by(id: params[:id].to_i)
       if params[:dog_ids]
         params[:dog_ids].map(&:to_i).each do |d|
           if !@walk.dogs.ids.include?(d)
