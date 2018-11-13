@@ -1,6 +1,10 @@
 <%= render partial: 'form', locals: { walk: @walk } %><br><br>
 <%= render partial: 'show_dogs', locals: { walk: @walk } %><br><br><br><br>
 
+<% if @user.walker === true %>
+    <p><%= button_to "Delete Your Booking", delete_walk_path(@walk), {method: :delete} %></p><br>
+<% else %>
+  <p><%= button_to "Edit Your Booking", edit_walk_path(@walk), {method: :get} %></p><br>
+<% end %>
 
 <p><%= button_to "Go to your Page", user_path(current_user.id), {method: :get} %></p>
-<p><%= button_to "Edit Your Booking", edit_walk_path(@walk), {method: :get} %></p><br>

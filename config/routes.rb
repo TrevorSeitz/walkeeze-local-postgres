@@ -24,6 +24,7 @@ resources :photos
   delete 'dogs/:id' => 'dogs#destroy', :as => :delete_dog
   post 'dogs/create'=> 'dogs#create', :as => :create_dog
   post 'walks/create'=> 'walks#create', :as => :create_walk
+  delete 'walks/:id' => 'walks#destroy', :as => :delete_walk
   post 'dogs/:id' => 'dogs#update', :as => :update_dog
   get '/walks/:id/participants' => 'walks#participants', :as => :participants
 

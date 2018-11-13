@@ -14,14 +14,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(name: params[:name], email: params[:email])
-    byebug
 
     redirect_to user_path(@user), notice: "Update Successful"
   end
 
 
   def edit
-    # byebug
     @user = User.find(params[:id].to_i)
   end
 
