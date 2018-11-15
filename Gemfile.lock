@@ -276,7 +276,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bootstrap
-  bootstrap-datepicker-rails (~> 1.8, >= 1.8.0.1)
+  bootstrap-datepicker-rails
   byebug
   capybara (>= 2.15)
   chromedriver-helper

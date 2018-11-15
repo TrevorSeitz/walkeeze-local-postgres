@@ -1,6 +1,7 @@
 <%= "Currently Scheduled Walks:" %><br />
 <% if @user.walker === true %>
   <% walks = Walk.select{|walk| walk.walker_id === current_user.id} %>
+
   <% walks.each do |w| %>
     <%= link_to "#{w.date} @ #{w.time} ", user_walk_path(@user.id, w.id) %><br>
     with:<br />

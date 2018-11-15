@@ -1,15 +1,13 @@
 <h3> <%= current_user.name%>'s Walks </h3>
-
-<p><%= button_to "Go to your Page", user_path(current_user.id), {method: :get} %></p>
-  <%= form_tag "/walks/create" do %>
-    <%= hidden_field_tag :id, params[:id] %>
-    <%= hidden_field_tag :walker_name, current_user.name %>
-    <%= hidden_field_tag :walker_id, current_user.id %>
-    ``<%= hidden_field_tag :id, params[:id] %>
-    <div class="column6" id="log-in">
-    <p>Create A New Walk</p>
+  <div class="column6" id="new_walk">
+    <%= form_tag "/walks/create" do %>
+      <%= hidden_field_tag :id, params[:id] %>
+      <%= hidden_field_tag :walker_name, current_user.name %>
+      <%= hidden_field_tag :walker_id, current_user.id %>
+      <%= hidden_field_tag :id, params[:id] %>
+      <p>Create A New Walk</p>
       <div class="field">
-        <%= label_tag :date %><br>
+        <%= label_tag :date %> - yyyy/mm/dd<br>
         <%= text_field_tag :date, @walk.try(:date) %>
       </div>
       <div class="field">
@@ -29,5 +27,6 @@
         <%= text_field_tag :notes, @walk.try(:notes) %>
       </div>
       <div class="actions"><%= submit_tag "Register" %></div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+    <br /><%= button_to "Return to your Page", user_path(current_user.id), {method: :get} %><br />

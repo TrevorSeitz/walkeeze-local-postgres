@@ -4,7 +4,10 @@
       <h2><%= notice %></h2>
     <% end %>
     <%= render partial: 'edit_user_form', locals: { user: @user } %>
+    <p><%= button_to "Return to your Page", user_path(current_user.id), {method: :get} %></p>
+
   </div>
+
 
   <!-- <div class="column">
     <p>
