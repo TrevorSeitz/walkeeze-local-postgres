@@ -1,17 +1,18 @@
 class WalksController < ApplicationController
+wrap_parameters Walk
+
   def new
     @walk = Walk.new
   end
-
 
   def index
     @walks = Walk.all
   end
 
   def create
-    byebug
     if params[:id].to_i > 0
-      @walk = Walk.find_or_create_by(params[:id].to_i)
+      byebug
+      @walk = Walk.find_or_create_by(id: params[:id].to_i)
       if params[:dog_ids]
         params[:dog_ids].map(&:to_i).each do |d|
           if !@walk.dogs.ids.include?(d)
@@ -39,7 +40,7 @@ class WalksController < ApplicationController
         render 'confirm_walk'
       end
     else
-      @walk = Walk.new
+      @walk = Walk.new(walk_params)
       @walk.save
       redirect_to walker_url(current_user)
     end
@@ -57,6 +58,12 @@ class WalksController < ApplicationController
   def edit
     @walk = Walk.find(params[:id].to_i)
     @dogs = Dog.where(user_id: @user.id)
+  end
+
+  def destroy
+    @walk = Walk.find(params[:id])
+    @walk.delete
+    redirect_to user_path(@user)
   end
 
   def show
@@ -81,7 +88,7 @@ class WalksController < ApplicationController
 
   def walk_params
     # params.require(:walk).permit(:id, :name, :length, :available, :available_spots, :date, :time, :notes)
-    params.permit(:id, :name, :length, :available, :available_spots, :date, :time, :notes)
+    params.permit(:id, :name, :length, :available, :available_spots, :date, :time, :notes, :walker_name, :walker_id)
   end
 
 end

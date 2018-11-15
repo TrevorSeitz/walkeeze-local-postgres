@@ -19,3 +19,4 @@
 //= require dogNote
 //= require showDogs
 //= require loadWalks
+//= require bootstrap-datepicker

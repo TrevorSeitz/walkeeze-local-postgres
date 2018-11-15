@@ -1,21 +1,19 @@
 <% if session[:user_id] %>
+  <div class="shadowbox">
+    <%= "Welcome to Walk-eze #{@user.name}! " %><br><br>
 
-<div class="center">
-  <%= "Welcome to Walk-eze #{@user.name}! " %><br><br>
+    <%= "Currently, Walkeeze's most active dog is:" %><br />
+    <%= "#{Dog.most_walks.name}, with a total of #{Dog.most_walks.dogs_walks.count} walks!" %><br><br>
+  </div>
 
-  <%= "Currently, Walkeeze's most active dog is:" %>
-</div>
-
-
-
-
-  <p><%= button_to "Go to your Page", user_path(@user), {method: :get} %></p>
-  <% if @user.walker === true%>
-    <p><%= button_to "Add a new Walk to your list", new_walk_path, {method: :get} %></p><br>
-  <% else %>
-    <p><%= button_to "Book a Walk", walks_path, {method: :get} %></p><br>
-  <% end %>
-
+  <div id="buttons">
+    <p><%= button_to "Go to your Page", user_path(@user), {method: :get} %></p>
+    <% if @user.walker === true%>
+      <p><%= button_to "Add a new Walk to your list", new_walk_path, {method: :get} %></p><br>
+    <% else %>
+      <p><%= button_to "Book a Walk", walks_path, {method: :get} %></p><br>
+    <% end %>
+  </div>
 <% else %>
 
   <div id="tagline">
@@ -40,26 +38,10 @@
           <%= password_field_tag :password %>
         </div>
         <div class="actions"><%= submit_tag "Login" %></div>
-         or<br /> <%= link_to "Create an account", new_user_path %>
+         <br /> <br /> <%= link_to "Create an account", new_user_path %><br /><br />
+
+         or <%= link_to "become a walker.", new_walker_path %>
       <% end %>
     </div>
-    <div class="column6" id="log-in">
-      <p>
-        <strong>Are you a Walker?</strong><br>
-        login below.
-      </p>
-    <%= form_tag "/walker_login" do %>
-      <div class="field">
-        <%= label_tag :email, "Email" %><br>
-        <%= text_field_tag :email %>
-      </div>
-      <div class="field">
-        <%= label_tag :password %><br>
-        <%= password_field_tag :password %>
-      </div>
-      <div class="actions"><%= submit_tag "Login" %></div>
-    <% end %>
-      or<br /> <%= link_to "Create a walker account", new_walker_path %>
-    </div>
-  </div>
+
 <% end %>

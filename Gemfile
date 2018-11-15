@@ -36,7 +36,7 @@ gem 'jquery'
 gem 'bootstrap'
 # gem 'bootstrap-sass'
 gem 'devise'
-gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
+gem 'bootstrap-datepicker-rails'
 
 gem "paperclip", ">= 5.2.0"
 # Use Redis adapter to run Action Cable in production

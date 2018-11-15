@@ -1,34 +1,32 @@
-<!-- this is the new walks form - it will be where Walkers add walks -->
-<h3> <%= current_user.name%>'s Walks </h3><br /><br />
-<p>Create A New Walk</p>
-
-<%= form_tag "/walks/create" do %>
-  <%= hidden_field_tag :id, params[:id] %>
-  <div class="column6" id="log-in">
-    <div class="field">
-      <%= label_tag :date %><br>
-      <%= text_field_tag :date, @walk.try(:date) %>
-
-    </div>
-
-
-
-    <div class="field">
-      <%= label_tag :time %><br>
-      <%= text_field_tag :time, @walk.try(:time) %>
-    </div>
-    <div class="field">
-      <%= label_tag :length %><br>
-      <%= text_field_tag :length, @walk.try(:length) %>
-    </div>
-    <div class="field">
-      <%= label_tag :available_spots %><br>
-      <%= text_field_tag :available_spots, @walk.try(:available_spots) %>
-    </div>
-    <div class="field">
-      <%= label_tag :notes %><br>
-      <%= text_field_tag :notes, @walk.try(:notes) %>
-    </div>
-    <div class="actions"><%= submit_tag "Register" %></div>
+<h3> <%= current_user.name%>'s Walks </h3>
+  <div class="column6" id="new_walk">
+    <%= form_tag "/walks/create" do %>
+      <%= hidden_field_tag :id, params[:id] %>
+      <%= hidden_field_tag :walker_name, current_user.name %>
+      <%= hidden_field_tag :walker_id, current_user.id %>
+      <%= hidden_field_tag :id, params[:id] %>
+      <p>Create A New Walk</p>
+      <div class="field">
+        <%= label_tag :date %> - yyyy/mm/dd<br>
+        <%= text_field_tag :date, @walk.try(:date) %>
+      </div>
+      <div class="field">
+        <%= label_tag :time %><br>
+        <%= text_field_tag :time, @walk.try(:time) %>
+      </div>
+      <div class="field">
+        <%= label_tag :length %><br>
+        <%= text_field_tag :length, @walk.try(:length) %>
+      </div>
+      <div class="field">
+        <%= label_tag :available_spots %><br>
+        <%= text_field_tag :available_spots, @walk.try(:available_spots) %>
+      </div>
+      <div class="field">
+        <%= label_tag :notes %><br>
+        <%= text_field_tag :notes, @walk.try(:notes) %>
+      </div>
+      <div class="actions"><%= submit_tag "Register" %></div>
+    <% end %>
   </div>
-<% end %>
+    <br /><%= button_to "Return to your Page", user_path(current_user.id), {method: :get} %><br />

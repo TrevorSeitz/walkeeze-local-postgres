@@ -1,8 +1,18 @@
 <%= "Currently Scheduled Walks:" %><br />
-<% walks = @user.walks.uniq {|w| w.id } %>
-<% walks.each do |w| %>
-  <%= link_to "#{w.date} @ #{w.time} with #{w.walker_name}", user_walk_path(@user.id, w.id) %><br>
-  <%= safe_join(w.dogs.map { |d| d.name}, ', ') %><br /><br /><br />
-<%end%><br />
+<% if @user.walker === true %>
+  <% walks = Walk.select{|walk| walk.walker_id === current_user.id} %>
 
-<%= button_to "Schedule a Walk", walks_path, {method: :get} %><br />
+  <% walks.each do |w| %>
+    <%= link_to "#{w.date} @ #{w.time} ", user_walk_path(@user.id, w.id) %><br>
+    with:<br />
+    <%= safe_join(w.dogs.map { |d| d.name}, ', ') %><br /><br /><br />
+  <%end%><br />
+<% else %>
+  <% walks = @user.walks.uniq {|w| w.id } %>
+  <% walks.each do |w| %>
+    <%= link_to "#{w.date} @ #{w.time} with #{w.walker_name}", user_walk_path(@user.id, w.id) %><br>
+    <%= safe_join(w.dogs.map { |d| d.name}, ', ') %><br /><br /><br />
+  <%end%><br />
+
+  <%= button_to "Schedule a Walk", walks_path, {method: :get} %><br />
+<% end %>

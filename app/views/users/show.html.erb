@@ -1,4 +1,6 @@
 <h1>Hello, <%= @user.name %>!</h1>
+
+<p><%#= button_to "Go to your Page", user_path(current_user.id), {method: :get} %></p>
 <div class="row">
   <div class="column3">
     <%= render partial: 'form', locals: { user: @user, dog: @dog, dogs: @dogs } %>
@@ -7,17 +9,20 @@
   </div>
   <div class="column3">
 
-          <%= render partial: 'scheduled_walks', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+    <%= render partial: 'scheduled_walks', locals: { user: @user, dog: @dog, dogs: @dogs } %><br />
+    <% if @user.walker === true %>
+      <p><%= button_to "Add a new Walk to your list", new_walk_path, {method: :get} %></p><br />
+    <% end %>
   </div>
   <div class="column3">
-        <%= render partial: 'users_dogs', locals: { user: @user, dog: @dog, dogs: @dogs } %>
-      <div class="column3-1">
-        <div class="dog">
-        </div>
+    <%= render partial: 'users_dogs', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+    <!-- <div class="column3-1">
+      <div class="dog">
       </div>
-      <div class="column3-2">
-        <%= render partial: 'show_photo', locals: { user: @user, dog: @dog, dogs: @dogs } %>
-      </div>
-    </div>
+    </div> -->
+    <!-- <div class="column3-2">
+      <%#= render partial: 'show_photo', locals: { user: @user, dog: @dog, dogs: @dogs } %>
+    </div> -->
   </div>
+  <!-- </div> -->
 </div>
