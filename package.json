@@ -1,9 +1,13 @@
 {
   "name": "walkeeze-local-postgres",
+  "scripts": {
+    "start": "node ./app/assets/javascripts/application.js"
+  },
   "private": true,
   "dependencies": {
     "dotenv": "^6.1.0",
     "node": "^11.1.0",
+    "node-bin-setup": "^1.0.6",
     "start": "^5.1.0"
   }
 }
